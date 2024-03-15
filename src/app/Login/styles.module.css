@@ -1,0 +1,192 @@
+.loginPage {
+	display: flex;
+	height: 100vh;
+	overflow: hidden;
+}
+
+.LoginMain {
+	width: 50%;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+	align-items: center;
+	transition: 2s ease-in-out;
+	overflow: hidden;
+}
+.girar {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.titulo {
+	text-align: center;
+	font-size: 32px;
+	margin-bottom: 10px;
+	font-weight: bold;
+}
+.containerBtn {
+	width: 100%;
+}
+.fieldset {
+	display: flex;
+	flex-direction: column;
+	gap: 7px;
+	border: none;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.input {
+	padding: 10px;
+	border-radius: 5px;
+	outline: none;
+	border: solid #dbdbdb 1px;
+}
+.animacao {
+	transition: 1.5s;
+	margin-bottom: 30px;
+}
+.a {
+	color: rgb(90, 90, 255);
+	text-decoration: none;
+}
+.containerBtn {
+	margin-bottom: 15px;
+}
+.loginContainer {
+	transform: translateX(-500px);
+	transition: 1.5s;
+	position: absolute;
+	z-index: -1;
+}
+.registrarContainer {
+	transform: translateX(500px);
+	transition: 1.5s;
+	position: absolute;
+	z-index: -1;
+}
+.btn {
+	border: none;
+	background-color: transparent;
+	border-bottom: 1px solid black;
+	width: 50%;
+	padding: 5px;
+	cursor: pointer;
+	font-size: 15px;
+}
+.btnAtivo {
+	border-bottom: inset black 2px;
+	font-weight: bold;
+}
+.label {
+	font-weight: 600;
+}
+.logoImg {
+	height: 100px;
+	width: 160px;
+	margin-top: 30px;
+}
+.confirmar {
+	padding: 12px 10px;
+	background-color: #141415;
+	color: white;
+	border-radius: 7px;
+	border: none;
+	cursor: pointer;
+	font-weight: 500;
+	margin-bottom: 10px;
+}
+.aside {
+	width: 50%;
+	height: inherit;
+}
+.loginAdminError {
+	color: red;
+	font-size: 14px;
+}
+.esqueceu1 {
+	visibility: hidden;
+}
+.aside img {
+	height: 100%;
+	width: 100%;
+	object-fit: cover;
+}
+.a:hover {
+	text-decoration: underline;
+}
+.confirmar:hover {
+	background-color: #2a2a2a;
+}
+.btn:hover {
+	border-bottom: 2px inset black;
+}
+/*.loginAdminPage {
+	height: 100vh;
+	width: 100%;
+	background-image: url("../../../public/bg_login_admin.svg");
+	background-position: center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+.loginAdmincontainer {
+	display: flex;
+	flex-basis: 20%;
+	height: 40%;
+	flex-direction: column;
+	justify-content: space-evenly;
+	text-align: center;
+	color: white;
+	border: 1px solid white;
+	border-radius: 15px;
+	padding: 20px;
+}
+
+.loginAdminContent {
+	display: flex;
+	flex-direction: column;
+	align-items: flex-start;
+	border: none;
+	margin-bottom: 15px;
+}
+.loginAdminContent label {
+	margin-bottom: 5px;
+	font-size: 14px;
+	color: rgb(225, 225, 225);
+}
+.loginAdminContent input {
+	border-radius: 7px;
+	height: 25px;
+	width: 100%;
+	border: none;
+}
+.loginAdminBotao {
+	width: 100%;
+	border: none;
+	outline: none;
+	height: 27px;
+	border-radius: 7px;
+	background-color: #02ccb4;
+	font-weight: bold;
+	margin-bottom: 15px;
+}
+.loginAdminError {
+	font-size: 13px;
+	color: red;
+	margin-top: 3px;
+}
+@media (max-width: 1024px) {
+	.loginAdmincontainer {
+		flex-basis: 30%;
+	}
+}
+@media (max-width: 480px) {
+	.loginAdmincontainer {
+		flex-basis: 60%;
+	}
+}*/ /*# sourceMappingURL=styles.module.css.map */

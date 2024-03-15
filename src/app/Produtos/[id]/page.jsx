@@ -5,350 +5,203 @@ import Link from "next/link";
 
 import "./Styles.scss";
 export default function ProdutoDetalhe({ params }) {
-	const todosProdutos = [
-		{
-			id: 0,
-			nome: "MENS SHOES DN 23XX, NEW PRODUCT",
-			valorAtual: "130.00",
-			valorAntigo: "100.00",
-			desconto: "25",
-			tag: "LIFESTYLE",
-			cores: ["preto", "branco", "verde"],
-			estoqueNum: 20,
-			valorFrete: "150.00",
-			estrelas: "1",
-			img1: "https://via.placeholder.com/600x600",
-			img2: "/4.jpg",
-			img3: "/5.jpg",
-			img4: "/1.jpg",
-		},
-		{
-			id: 1,
-			nome: "MENS SHOES DN 23XX, NEW PRODUCT",
-			valorAtual: "130.00",
-			valorAntigo: "100.00",
-			desconto: "25",
-			tag: "LIFESTYLE",
-			cores: ["preto", "branco", "verde"],
-			estoqueNum: 20,
-			valorFrete: "150.00",
-			estrelas: "1",
-			img1: "/4.jpg",
-			img2: "https://via.placeholder.com/600x600",
-			img3: "/5.jpg",
-			img4: "/1.jpg",
-		},
-		{
-			id: 0,
-			nome: "MENS SHOES DN 23XX, NEW PRODUCT",
-			valorAtual: "130.00",
-			valorAntigo: "100.00",
-			desconto: "25",
-			tag: "LIFESTYLE",
-			cores: ["preto", "branco", "verde"],
-			estoqueNum: 20,
-			valorFrete: "150.00",
-			estrelas: "1",
-			img1: "/5.jpg",
-			img2: "https://via.placeholder.com/600x600",
-			img3: "/5.jpg",
-			img4: "/1.jpg",
-		},
-		{
-			id: 0,
-			nome: "MENS SHOES DN 23XX, NEW PRODUCT",
-			valorAtual: "130.00",
-			valorAntigo: "100.00",
-			desconto: "25",
-			tag: "LIFESTYLE",
-			cores: ["preto", "branco", "verde"],
-			estoqueNum: 20,
-			valorFrete: "150.00",
-			estrelas: "1",
-			img1: "/1.jpg",
-			img2: "https://via.placeholder.com/600x600",
-			img3: "/5.jpg",
-			img4: "/1.jpg",
-		},
-	];
-	const [principalImage, setPrincipalImage] = useState("");
-	const [position, setPosition] = useState(1);
-	const [loading, setLoading] = useState("");
+	const [imgPrincipal, setImgPrincipal] = useState("/1.jpg");
 
-	const MAGNIFY_SIZE = 200;
-	const MAGNIFY_SIZE_HALF = MAGNIFY_SIZE / 7;
-
-	const [magnifyStyle, setMagnifyStyle] = useState({
-		backgroundImage: `url(${principalImage})`,
-	});
-
-	const handleMouseMove = (e) => {
-		const { offsetX, offsetY, target } = e.nativeEvent;
-		const { offsetWidth, offsetHeight } = target;
-
-		const xPercentage = (offsetX / offsetWidth) * 100;
-		const yPercentage = (offsetY / offsetHeight) * 100;
-
-		setMagnifyStyle((prev) => ({
-			...prev,
-			display: "block",
-			top: `${offsetY - MAGNIFY_SIZE_HALF}px`,
-			left: `${offsetX - MAGNIFY_SIZE_HALF}px`,
-			backgroundPosition: `${xPercentage}% ${yPercentage}%`,
-		}));
-	};
-
-	const handleMouseLeave = (e) => {
-		setMagnifyStyle((prev) => ({ ...prev, display: "none" }));
-		console.log(principalImage);
-	};
-
-	useEffect(() => {
-		setLoading(true);
-		setPosition(window.location.pathname.slice(10));
-		setLoading(false);
-	}, []);
-
-	useEffect(() => {
-		setLoading(true);
-		setPrincipalImage("/1.jpg");
-		setMagnifyStyle({
-			backgroundImage: `url(${"/1.jpg"})`,
-		});
-		setLoading(false);
-	}, [position]);
-
-	useEffect(() => {
-		setMagnifyStyle({
-			backgroundImage: `url(${principalImage})`,
-		});
-	}, [principalImage]);
+	function mudarImg(novaImg) {
+		setImgPrincipal(novaImg);
+	}
 
 	return (
-		<div className="card-wrapper">
-			<div className="Header-card">
-				<p className="breadcrumb-card">produtos/{todosProdutos[position].id}</p>
-				<Link href="/produtos" className="voltar-card">
-					Voltar
-				</Link>
-			</div>
-			{!loading ? (
-				<div className="card">
-					<div className="product-imgs">
-						<div className="img-display">
-							<div className="img-showcase">
-								<img
-									className="principal-image"
-									src={principalImage}
-									alt="shoe image"
-									draggable={false}
-									onMouseMove={handleMouseMove}
-									onMouseLeave={handleMouseLeave}
-								/>
-								<div className="magnify" style={magnifyStyle}></div>
+		<div className="produto">
+			<div class="container">
+				<div class="single-product">
+					<div class="row">
+						<div class="col-6">
+							<div class="product-image">
+								<div class="product-image-main">
+									{imgPrincipal ? (
+										<img src={imgPrincipal} alt="" id="product-main-image" />
+									) : null}
+								</div>
+								<div class="product-image-slider">
+									<img
+										src="/1.jpg"
+										alt=""
+										class="image-list"
+										onClick={() => mudarImg("/1.jpg")}
+									/>
+									<img
+										src="/4.jpg"
+										alt=""
+										class="image-list"
+										onClick={() => mudarImg("/4.jpg")}
+									/>
+									<img
+										src="/5.jpg"
+										alt=""
+										class="image-list"
+										onClick={() => mudarImg("/5.jpg")}
+									/>
+									<img
+										src="/1.jpg"
+										alt=""
+										class="image-list"
+										onClick={() => mudarImg("/1.jpg")}
+									/>
+								</div>
 							</div>
 						</div>
-						<div className="img-select">
-							<div className="img-item">
-								<button
-									data-id="1"
-									onClick={(e) => {
-										setPrincipalImage(todosProdutos[position].img1);
-									}}
-								>
-									<img
-										className="img"
-										src={todosProdutos[position].img1}
-										alt="shoe image"
-									/>
-								</button>
+						<div class="col-6">
+							<div class="breadcrumb">
+								<span>
+									<Link href="/">Home</Link>
+								</span>
+								<span>
+									<Link href="/Produtos">Product</Link>
+								</span>
+								<span class="active">T-shirt</span>
 							</div>
-							<div className="img-item">
-								<button
-									data-id="2"
-									onClick={(e) => {
-										setPrincipalImage(todosProdutos[position].img2);
-									}}
-								>
-									<img
-										className="img"
-										src={todosProdutos[position].img2}
-										alt="shoe image"
-									/>
-								</button>
-							</div>
-							<div className="img-item">
-								<button
-									data-id="3"
-									onClick={(e) => {
-										setPrincipalImage(todosProdutos[position].img3);
-									}}
-								>
-									<img
-										className="img"
-										src={todosProdutos[position].img3}
-										alt="shoe image"
-									/>
-								</button>
-							</div>
-							<div className="img-item">
-								<button
-									data-id="4"
-									onClick={(e) => {
-										setPrincipalImage(todosProdutos[position].img4);
-									}}
-								>
-									<img
-										className="img"
-										src={todosProdutos[position].img4}
-										alt="shoe image"
-									/>
-								</button>
-							</div>
-						</div>
-					</div>
 
-					<div className="product-content">
-						<h2 className="product-title">{todosProdutos[position].nome}</h2>
-						<a href="#" className="product-link">
-							visit nike store
-						</a>
-						<div className="product-rating">
-							<i className="fas fa-star">
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 64 64"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M62 25.2H39.1L32 3L24.9 25.2H2L20.5 38.9L13.5 61L32 47.3L50.5 61L43.4 38.8L62 25.2Z"
-										fill="#FFCE31"
-									/>
-								</svg>
-							</i>
-							<i className="fas fa-star">
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 64 64"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M62 25.2H39.1L32 3L24.9 25.2H2L20.5 38.9L13.5 61L32 47.3L50.5 61L43.4 38.8L62 25.2Z"
-										fill="#FFCE31"
-									/>
-								</svg>
-							</i>
-							<i className="fas fa-star">
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 64 64"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M62 25.2H39.1L32 3L24.9 25.2H2L20.5 38.9L13.5 61L32 47.3L50.5 61L43.4 38.8L62 25.2Z"
-										fill="#FFCE31"
-									/>
-								</svg>
-							</i>
-							<i className="fas fa-star">
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 64 64"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M62 25.2H39.1L32 3L24.9 25.2H2L20.5 38.9L13.5 61L32 47.3L50.5 61L43.4 38.8L62 25.2Z"
-										fill="#FFCE31"
-									/>
-								</svg>
-							</i>
-							<i className="fas fa-star-half-alt">
-								<svg
-									width="20"
-									height="20"
-									viewBox="0 0 64 64"
-									fill="none"
-									xmlns="http://www.w3.org/2000/svg"
-								>
-									<path
-										d="M62 25.2H39.1L32 3L24.9 25.2H2L20.5 38.9L13.5 61L32 47.3L50.5 61L43.4 38.8L62 25.2Z"
-										fill="#FFCE31"
-									/>
-								</svg>
-							</i>
-							<span> 5(21)</span>
-						</div>
-
-						<div className="product-price">
-							{todosProdutos[position].valorAtual ? (
-								<p className="new-price">
-									Novo preço{" "}
+							<div class="product">
+								<div class="product-title">
+									<h2>Half Sleve T-shirt for Men</h2>
+								</div>
+								<div class="product-rating">
 									<span>
-										${todosProdutos[position].valorAtual}
-										{todosProdutos[position].desconto
-											? `(${todosProdutos[position].desconto}% OFF)`
-											: null}
+										<i class="bx bxs-star"></i>
 									</span>
-								</p>
-							) : null}
+									<span>
+										<i class="bx bxs-star"></i>
+									</span>
+									<span>
+										<i class="bx bxs-star"></i>
+									</span>
+									<span>
+										<i class="bx bxs-star"></i>
+									</span>
+									<span>
+										<i class="bx bxs-star"></i>
+									</span>
+									<span class="review">(47 Review)</span>
+								</div>
+								<div class="product-price">
+									<span class="offer-price">$99.00</span>
+									<span class="sale-price">$129.00</span>
+								</div>
 
-							{todosProdutos[position].valorAntigo ? (
-								<p className="last-price">
-									Preço antigo{" "}
-									<span>${todosProdutos[position].valorAntigo}</span>
-								</p>
-							) : null}
-						</div>
+								<div class="product-details">
+									<h3>Description</h3>
+									<p>
+										Lorem ipsum dolor sit amet consectetur adipisicing elit.
+										Quos est magnam quibusdam maiores sit perferendis minima
+										cupiditate iusto earum repudiandae maxime vitae nostrum, ea
+										cumque iste ipsa hic commodi tempore.
+									</p>
+								</div>
+								<div class="product-size">
+									<h4>Size</h4>
+									<div class="size-layout">
+										<input
+											type="radio"
+											name="size"
+											value="S"
+											id="1"
+											class="size-input"
+										/>
+										<label for="1" class="size">
+											S
+										</label>
 
-						<div className="product-detail">
-							<span> Detalhes</span>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit. Illo
-								eveniet veniam tempora fuga tenetur placeat sapiente architecto
-								illum soluta consequuntur, aspernatur quidem at sequi ipsa!
-							</p>
-							<p>
-								Lorem ipsum dolor sit amet consectetur adipisicing elit.
-								Consequatur, perferendis eius. Dignissimos, labore suscipit.
-								Unde.
-							</p>
-							<ul>
-								<li className="listaCor">
-									Cor{" "}
-									{todosProdutos[position].cores.map((cor, key) => {
-										return (
-											<p>
-												{cor}
-												{todosProdutos[position].cores.length - 1 <= key
-													? "."
-													: ","}
-											</p>
-										);
-									})}
-								</li>
-								<li>
-									Estoque <span>{todosProdutos[position].estoqueNum}</span>
-								</li>
-								<li>
-									tag: <span>{todosProdutos[position].tag}</span>
-								</li>
+										<input
+											type="radio"
+											name="size"
+											value="M"
+											id="2"
+											class="size-input"
+										/>
+										<label for="2" class="size">
+											M
+										</label>
 
-								<li>
-									Frete <span> ${todosProdutos[position].valorFrete}</span>
-								</li>
-							</ul>
+										<input
+											type="radio"
+											name="size"
+											value="L"
+											id="3"
+											class="size-input"
+										/>
+										<label for="3" class="size">
+											L
+										</label>
+
+										<input
+											type="radio"
+											name="size"
+											value="XL"
+											id="4"
+											class="size-input"
+										/>
+										<label for="4" class="size">
+											XL
+										</label>
+
+										<input
+											type="radio"
+											name="size"
+											value="XXL"
+											id="5"
+											class="size-input"
+										/>
+										<label for="5" class="size">
+											XXL
+										</label>
+									</div>
+								</div>
+								<div class="product-color">
+									<h4>Color</h4>
+									<div class="color-layout">
+										<input
+											type="radio"
+											name="color"
+											value="black"
+											class="color-input"
+										/>
+										<label for="black" class="black"></label>
+										<input
+											type="radio"
+											name="color"
+											value="red"
+											class="color-input"
+										/>
+										<label for="red" class="red"></label>
+
+										<input
+											type="radio"
+											name="color"
+											value="blue"
+											class="color-input"
+										/>
+										<label for="blue" class="blue"></label>
+									</div>
+								</div>
+								<span class="divider"></span>
+
+								<div class="product-btn-group">
+									<div class="button buy-now">
+										<i class="bx bxs-zap"></i> Buy Now
+									</div>
+									<div class="button add-cart">
+										<i class="bx bxs-cart"></i> Add to Cart
+									</div>
+									<div class="button heart">
+										<i class="bx bxs-heart"></i> Add to Wishlist
+									</div>
+								</div>
+							</div>
 						</div>
 					</div>
 				</div>
-			) : null}
+			</div>
 		</div>
 	);
 }

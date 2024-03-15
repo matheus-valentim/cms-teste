@@ -1,0 +1,70 @@
+.logoImg {
+	height: 80px;
+	width: 140px;
+}
+.logoContainer {
+	display: flex;
+	justify-content: center;
+}
+.mudarSenha {
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: #efefef;
+}
+.mudarSenhaContainer {
+	display: flex;
+	flex-direction: column;
+	background-color: white;
+	padding: 40px;
+	border-radius: 10px;
+	gap: 15px;
+}
+.error {
+	font-size: 14px;
+	color: red;
+}
+.h1 {
+	font-size: 25px;
+	font-weight: 400;
+	color: #153060;
+}
+.p {
+	color: #828282;
+	margin-top: 10px;
+	font-size: 14px;
+}
+.form {
+	display: flex;
+	flex-direction: column;
+	gap: 20px;
+}
+.fieldset {
+	border: none;
+	display: flex;
+	flex-direction: column;
+	gap: 10px;
+}
+.input {
+	padding: 10px;
+	border-radius: 6px;
+	border: 1px solid #9badca;
+}
+.btn {
+	padding: 15px 10px;
+	background-color: #1e4178;
+	color: white;
+	border-radius: 5px;
+	border: none;
+	cursor: pointer;
+	font-weight: 500;
+}
+.btn:hover {
+	background-color: #153060;
+}
+@media only screen and (max-width: 425px) {
+	.mudarSenhaContainer {
+		height: 100%;
+	}
+}

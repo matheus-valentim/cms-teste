@@ -1,53 +1,44 @@
+"use client";
 import "./styles.scss";
 import Link from "next/link";
+import { produtosJson } from "../produtos";
+import { useEffect, useState } from "react";
 export default function Produtos() {
+	const [produtos, setProdutos] = useState("");
+	useEffect(() => {
+		async function importar() {
+			const staticData = await fetch(`http://localhost:3333/retornarProdutos`);
+			const data = await staticData.json();
+			setProdutos((anterior) => data);
+		}
+	}, []);
+	useEffect(() => {
+		console.log(produtos);
+	}, [produtos]);
 	return (
 		<section className="produtos">
 			<main className="produtosMain">
-				<section className="produtosTopContainer">
-					<h1 className="produtosH1">Produtos</h1>
-					<section className="produtosInputContainer">
-						<input type="text" name="" id="" className="produtosInput" />
-					</section>
-				</section>
-
 				<article className="produtosContainerCards">
-					<section className="produtosCard">
-						<img src="/5.jpg" alt="" className="produtosImagemCard" />
-						<h3 className="produtosCardTitulo">Calça estranha</h3>
-						<p className="produtosCardPromocao">promoção!</p>
-						<section className="produtosCardContainerValor">
-							<p className="produtosCardValorAntigo">R$70,00</p>
-							<p className="produtosCardValorAtual">R$00,00</p>
-						</section>
-						<Link href="/Produtos/1" className="produtosCardBotao">
-							Ver mais
-						</Link>
-					</section>
-					<section className="produtosCard">
-						<img src="/4.jpg" alt="" className="produtosImagemCard" />
-						<h3 className="produtosCardTitulo">Blusa cor de merda</h3>
-						<p className="produtosCardPromocao">promoção!</p>
-						<section className="produtosCardContainerValor">
-							<p className="produtosCardValorAntigo">R$32,00</p>
-							<p className="produtosCardValorAtual">R$22,00</p>
-						</section>
-						<Link href="/Produtos/2" className="produtosCardBotao">
-							Ver mais
-						</Link>
-					</section>
-					<section className="produtosCard">
-						<img src="/1.jpg" alt="" className="produtosImagemCard" />
-						<h3 className="produtosCardTitulo">Calcinha freada</h3>
-						<p className="produtosCardPromocao">promoção!</p>
-						<section className="produtosCardContainerValor">
-							<p className="produtosCardValorAntigo">R$50,00</p>
-							<p className="produtosCardValorAtual">R$40,00</p>
-						</section>
-						<Link href="/Produtos/3" className="produtosCardBotao">
-							Ver mais
-						</Link>
-					</section>
+					{produtosJson.map((produto) => {
+						return (
+							<section className="produtosCard">
+								<img src={produto.img1} alt="" className="produtosImagemCard" />
+								<h3 className="produtosCardTitulo">{produto.nome}</h3>
+								<p className="produtosCardPromocao">promoção!</p>
+								<section className="produtosCardContainerValor">
+									<p className="produtosCardValorAntigo">
+										R${produto.valorAntigo}
+									</p>
+									<p className="produtosCardValorAtual">
+										R${produto.valorAtual}
+									</p>
+								</section>
+								<Link href="/Produtos/1" className="produtosCardBotao">
+									Ver mais
+								</Link>
+							</section>
+						);
+					})}
 				</article>
 			</main>
 			<aside className="produtosSidebar">
