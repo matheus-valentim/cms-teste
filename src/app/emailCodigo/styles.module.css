@@ -68,6 +68,28 @@
 	color: red;
 	font-size: 14px;
 }
+.tooltip {
+	text-align: center;
+	position: absolute;
+	color: black;
+	bottom: 50px;
+	background-color: white;
+	padding: 5px;
+	border-radius: 10px;
+	width: 220px;
+	opacity: 0;
+}
+.aparecer {
+	animation: mostrar 2s;
+}
+@keyframes mostrar {
+	0% {
+		opacity: 1;
+	}
+	100% {
+		opacity: 0;
+	}
+}
 @media only screen and (max-width: 425px) {
 	.emailCodigoContainer {
 		justify-content: center;
